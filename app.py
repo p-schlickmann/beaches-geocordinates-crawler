@@ -9,43 +9,42 @@ import selenium.common.exceptions as SeleniumEXC
 from PIL import Image
 import pytesseract
 
-from scraper.database.conn import DatabaseConnection
+from conn import DatabaseConnection
 
 
 class Scraper:
     def __init__(self, database_path, **kwargs):
         self.database_path = database_path
-        self.driver = webdriver.Chrome('<path to your chromedriver.exe>')
-        if kwargs:
-            self.state = kwargs.get('state', None)
-            self.city = kwargs.get('city', None)
-            self.beach = kwargs.get('beach', None)
+        self.driver = webdriver.Chrome('C:/Users/edu/Downloads/driver/chromedriver.exe')
+        self.state = kwargs.get('state', None)
+        self.city = kwargs.get('city', None)
+        self.beach = kwargs.get('beach', None)
 
     def select_from_db(self):
         if self.beach:
             with DatabaseConnection(self.database_path) as cursor:
-                select_query = "SELECT * FROM locations_3 WHERE beach=?"
+                select_query = "SELECT * FROM locations_2 WHERE beach=?"
                 results = cursor.execute(select_query, (self.beach,))
                 return results.fetchall()
         elif self.city:
             with DatabaseConnection(self.database_path) as cursor:
-                select_query = "SELECT * FROM locations_3 WHERE city=?"
+                select_query = "SELECT * FROM locations_2 WHERE city=?"
                 results = cursor.execute(select_query, (self.city,))
                 return results.fetchall()
         elif self.state:
             with DatabaseConnection(self.database_path) as cursor:
-                select_query = "SELECT * FROM locations_3 WHERE state=?"
+                select_query = "SELECT * FROM locations_2 WHERE state=?"
                 results = cursor.execute(select_query, (self.state,))
                 return results.fetchall()
         else:
             with DatabaseConnection(self.database_path) as cursor:
-                select_query = "SELECT * FROM locations_3"
+                select_query = "SELECT * FROM locations_2"
                 results = cursor.execute(select_query)
                 return results.fetchall()
 
     def main(self, db_rows, path_to_save_data, path_to_db):
-        if rows:
-            for idx, row in enumerate(rows):
+        if db_rows:
+            for idx, row in enumerate(db_rows):
                 beach_name = row[2]
                 city_name = row[1]
                 state_name = row[0]
@@ -120,7 +119,7 @@ class Scraper:
 
     @staticmethod
     def check_coords(content, beach):
-        expression = '(.+)(°|") (S|W|N|E), (.+)(°|") (S|W|N|E)'
+        expression = '(.+)(°|") (S|W), (.+)(°|") (S|W)'
         matches = re.search(expression, content)
 
         try:
@@ -176,6 +175,6 @@ class Scraper:
             return filtered_name
 
 
-scraper = Scraper('<path to database (get)>')  # optional kwargs (line 20, 21, 22)
+scraper = Scraper('./scraper/database/brazil_1.db')
 rows = scraper.select_from_db()
-scraper.main(rows, '<directory to save screenshots>', '<path to database (save)>')
+scraper.main(rows, './testando', './scraper/database/brazil_1.db')
