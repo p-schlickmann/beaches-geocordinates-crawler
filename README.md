@@ -7,7 +7,7 @@
 5. Open your **terminal** (MacOS, Linux) or **cmd** (Windows), navigate to the project folder and run:  
 if you are using pipenv: `pipenv run python app.py` 
 if not: `python app.py`
-6. You will need a .db file specifying at least city_name and beach_name for each beach
+6. You will need a .db file specifying at least city and beach for each Beach 
 
 7. You can specify beach, city or state when calling the class Scraper with the keyword arguments "state=", "city=" or "beach="  
   
