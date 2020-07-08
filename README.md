@@ -17,4 +17,4 @@ coordinates
 
 # Why I used Pytesseract and Pillow for this scraper?
 
-Google searches are protected, it's impossible to build a normal scraper for this, after one or two results it will throw StaleElementNotReferencedError and you can not fix that, beacause it´s a protective measure taken by google to protect their info from being scraped. So I used Selenium printscreen, I cut the image with Pillow and read the image information with Pytesseract
+Google searches are protected, it's impossible to build a normal scraper for this, after one or two results it will throw StaleElementReferenceError and you can not fix that, beacause it´s a protective measure taken by google to protect their info from being scraped. So I used Selenium printscreen, I cut the image with Pillow and read the image information with Pytesseract
