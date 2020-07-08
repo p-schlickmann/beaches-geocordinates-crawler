@@ -1,3 +1,8 @@
+
+# Why I used Pytesseract and Pillow for this scraper?
+
+Google searches are protected, it's impossible to build a normal scraper for this, after one or two results it will throw StaleElementReferenceError and you can not fix that, beacause it´s a protective measure taken by google to protect their info from being scraped. So I used Selenium printscreen, I cut the image with Pillow and read the image information with Pytesseract
+
 # How to run my own scraper?
 
 1. You need python installed on your computer  
@@ -14,7 +19,3 @@ if not: `python app.py`
 Keep in mind this scraper gets accurate results only around 85% of the times so you might want to check your results later, search for meaningless beach names or crazy 
 coordinates    
 
-
-# Why I used Pytesseract and Pillow for this scraper?
-
-Google searches are protected, it's impossible to build a normal scraper for this, after one or two results it will throw StaleElementReferenceError and you can not fix that, beacause it´s a protective measure taken by google to protect their info from being scraped. So I used Selenium printscreen, I cut the image with Pillow and read the image information with Pytesseract
