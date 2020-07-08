@@ -12,5 +12,9 @@ if not: `python app.py`
 7. You can specify beach, city or state when calling the class Scraper with the keyword arguments "state=", "city=" or "beach="  
   
 Keep in mind this scraper gets accurate results only around 85% of the times so you might want to check your results later, search for meaningless beach names or crazy 
-coordinates  
+coordinates    
 
+
+# Why I used Pytesseract and Pillow for this scraper?
+
+### Google searches are protected, it's impossible to build a normal scraper for this, after one or two results it will throw StaleElementNotReferencedError and you can not fix that, beacause it´s a protective measure taken by google to protect their info from being scraped. So I used Selenium printscreen, I cut the image with Pillow and read the image information with Pytesseract
